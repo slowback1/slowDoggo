@@ -2,7 +2,12 @@ import fetch from 'node-fetch';
 
 class DoggoService {
     sendData(data) {
-        fetch('http://localhost:8080/items/add/post', { method: 'POST', body: {item: data}})
+        fetch('http://localhost:8082', { 
+        method: 'POST',
+        body: {item: data},
+        method: 'cors',
+        headers: { 'Acess-Control-Allow-Origin': '*' }
+        })
         .then(function(res) {
             console.log(res);
         })

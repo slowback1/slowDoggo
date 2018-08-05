@@ -17,7 +17,7 @@ class AddDoggo extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.addDoggoService.sendData(this.state.value);
-        this.props.history.push('/');
+       // this.props.history.push('/');
     }
     
     render() {

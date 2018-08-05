@@ -1,30 +1,20 @@
-var express = require('express');
-var app = express();
-var port = 8082;
-var cors = require('cors');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-
-const mongoURL = './data';
-
-
-mongoose.Promise = require('bluebird');
-mongoose.connect(`${mongoURL}`)
-    .then(() => {
-        console.log('start');
-    }).catch(err => {
-        console.error('app starting error: ', err.stack);
-        process.exit(1);
+    var doggoSchema = new mongoose.Schema({
+        name: String
     });
+    var Doggo = mongoose.model('Doggo', doggoSchema);
+    var testDoggo = new Doggo({name: 'testDoggo' });
+    console.log(testDoggo.nane);
     
-    var itemRouter = require('./routes/itemRouter');
+    doggoSchema.methods.speak = function() {
+        var greeting = this.name ? "woof name is " + this.name : "I don't have a name";
+        console.log(greeting);
+    }
+    var Doggo = mongoose.model('Doggo', doggoSchema);
     
-    app.use(express.static('public'));
-    app.use(cors());
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(bodyParser.json());
-    app.use('/items', itemRouter);
+    var fluffy = new Doggo({name: 'fluffy'});
 
-app.listen(port, function() {
-    console.log('server is running on port: ', port);
-})
+    
+    Doggo.find({name: /^fluff/ }, function(err, doggo) {
+        if (err) console.error(err);
+        console.log(doggo);
+    });
