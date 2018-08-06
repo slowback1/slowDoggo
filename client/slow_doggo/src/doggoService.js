@@ -2,11 +2,10 @@ import fetch from 'node-fetch';
 
 class DoggoService {
     sendData(data) {
-        fetch('http://localhost:8082', { 
+        fetch('http://slow-doggo-slowback1.c9users.io:8082/doggo', { 
         method: 'POST',
-        body: {item: data},
-        method: 'cors',
-        headers: { 'Acess-Control-Allow-Origin': '*' }
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        body: {item: data}
         })
         .then(function(res) {
             console.log(res);

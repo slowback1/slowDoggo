@@ -11,21 +11,23 @@ class AddDoggo extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange = (event) => {
-        const file = event.target.files[0]
-        this.setState({img: file});
+        this.setState({img: URL.createObjectURL(event.target.files[0])});
     }
     handleSubmit(event) {
         event.preventDefault();
         this.addDoggoService.sendData(this.state.value);
-       // this.props.history.push('/');
+        this.props.history.push('/');
     }
     
     render() {
         return (
+            <div>
             <form action="/upload" method="post" enctype="multipart/form-data" onSubmit={this.handleSubmit}>
                 <input type="file" name="image" onChange={this.handleChange} />
                 <input type="submit" name="submit" value="submit" />
             </form>
+            <img src={this.state.img} alt="image will appear here" style={{width: '400px', height: '400px'}}/>
+            </div>
             )
     }
 }
