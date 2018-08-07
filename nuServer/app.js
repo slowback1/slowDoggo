@@ -1,6 +1,7 @@
 const express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+
 const port = 8082;
 mongoose.connect("mongodb://localhost:27017/data");
 
@@ -9,13 +10,17 @@ const app = express();
 
 var mongoose = require('mongoose');
 
+mongoose.promise = global.Promise;
+
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
 
 });
 var doggoImgSchema = new mongoose.Schema({
-    name: String
+    type: String,
+    data: Buffer
 })
 var DoggoImg = mongoose.model('DoggoImg', doggoImgSchema);
 app.use(function(req, res, next) {

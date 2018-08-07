@@ -1,5 +1,19 @@
 {
+    "name": "server",
+    "version": "1.0.0",
+    "description": "building node js app to save files/images to mongodb",
+    "main": "app.js",
     "scripts": {
-        "start": "nodemon app.js"
+        "test": "echo \"error: no test specified\" ** exit 1"
+    },
+    "keywords": [
+            "Node.js",
+            "MongoDB",
+            "Mongoose"
+        ],
+    "author": "Andrew Wobeck",
+    "liscense": "GNU",
+    "dependencies": {
+        "mongoose": "^5.0.17"
     }
 }
